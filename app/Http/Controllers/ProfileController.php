@@ -53,6 +53,30 @@ class ProfileController extends Controller
         return view('profile.findFriend')->with(compact('allUsers'));
     }
 
+    public function sendRequest($id)
+    {
+
+        Auth::user()->addFriend($id);
+
+        return back();
+    }
+
+    public function request()
+    {
+        $uid = Auth::user()->id;
+
+        $FriendRequests = DB::table('friendships')
+                        ->rightJoin('users', 'users.id', '=', 'friendships.requester')
+                        ->where('status', '=', Null)
+                        ->where('friendships.user_requested', '=', $uid)->get();
+        return view('profile.requests')->with(compact('FriendRequests'));
+    }
+
+    public function accepted()
+    {
+
+    }
+    
     public function notification()
     {
 

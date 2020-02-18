@@ -1,32 +1,54 @@
 @extends('profile.master')
 
 @section('content')
+
+
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <nav aria-label="breadcrumb" >
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{{url('/home')}}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a></li>
+
+    </ol>
+    </nav>
+    <div class="row">
+
+    @include('profile.sidebar')
+    @foreach($userData as $uData)
+
+        <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ucwords(Auth::user()->name)}}</div>
+                <div class="card-header">{{$uData->name}}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <h3 align="center">{{$uData->name}}</h3>
+                                <img src="{{url('../')}}/public/image/{{$uData->avatar}}" width="120px" height="120px" class="fix-img" />
+                                <div class="caption">
+
+                                    <p align="center">{{$uData->city}} - {{$uData->country}}</p>
+                                    @if ($uData->user_id == Auth::user()->id)
+                                    <p align="center"><a href="{{url('/editProfile')}}"
+                                      class="btn btn-secondary" role="button">Edit Profile</a></p>
+                                      @endif
+                                </div>
+                            </div>
                         </div>
-                    @endif
 
-                   Welcome to my profile <br>
+                        <div class="col-sm-6 col-md-4">
+                            <h4 class=""><span class="label label-default">About</span></h4>
+                            <p> {{$uData->about}} </p>
+                        </div>
+                    </div>
 
-                   <img src="{{url('../')}}/public/image/{{Auth::user()->avatar}}" width="100px" height="100px"><br>
-                   <a href="{{url('/')}}/changePhoto">Change Avatar</a>
 
-                   @foreach($userData as $uData)
-
-                   <li >{{$uData->city}} - {{$uData->country}}</li>
-                   <li >{{$uData->about}}</li>
-                   @endforeach
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 @endsection

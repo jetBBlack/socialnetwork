@@ -10,14 +10,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style type="text/css">
+        .fix-img{
+            margin-left:68px; 
+        }   
+    </style>
+   
 </head>
 <body>
     <div id="app">
@@ -51,31 +57,32 @@
                                 </li>
                             @endif
                         @else
-                            <li>
-                                <a href="">
-                                <img src="{{url('../')}}/public/image/{{Auth::user()->avatar}}" width="30px" height="30px" class="img-circle">
-                            </a></li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ucwords(Auth::user()->name) }} <span class="caret"></span>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+                                    <img src="{{url('../')}}/public/image/{{Auth::user()->avatar}}" width="30px" height="30px" class="rounded-circle"/>
+                                   
                                 </a>
 
-                              
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                    
-                                    <a  class="dropdown-item" href="{{url('editProfile')}}"> Edit Profile</a>  
-                                    
+                                    <li class="dropdown-item"> <a href="{{ url('/profile') }}/{{Auth::user()->slug}}" >   Profile  </a>
+                                    </li>
+                                    <li class="dropdown-item"> <a href="{{ url('editProfile') }}" >  Edit Profile  </a> </li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+
+
+                                </ul>
                             </li>
                         @endguest
                     </ul>
@@ -87,5 +94,11 @@
             @yield('content')
         </main>
     </div>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
+
+
 </html>

@@ -34,6 +34,7 @@ Route::group(['middleware'=>'auth'], function () {
    Route::get('/findFriends','ProfileController@findFriends');
    Route::post('/updateProfile','ProfileController@updateProfile' );
    Route::get('/editProfile','ProfileController@editProfile');
+   Route::get('addFriend/{id}','ProfileController@sendRequest');
 
 });
 

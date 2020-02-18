@@ -3,12 +3,14 @@
 @section('content')
 
 <div class="container">
-
+    <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li><a href="{{url('/home')}}">Home</a></li>
-        <li><a href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a></li>
-        <li><a href="">Find Friends</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="{{url('/home')}}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a></li>
+        <li class="breadcrumb-item"><a href="">Find Friends</a></li>
     </ol>
+    </nav>
+
 
 
     <div class="row">
@@ -16,8 +18,8 @@
 
 
         <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{Auth::user()->name}}</div>
+            <div class="card">
+                <div  style="background-color : #DEB887" class="card-header">{{Auth::user()->name}}</div>
 
                 <div class="panel-body">
                     <div class="col-sm-12 col-md-12">
@@ -47,7 +49,7 @@
                                 if($check ==''){
                                 ?>
                                    <p>
-                                        <a href="{{url('/')}}/addFriend/{{$uList->id}}"
+                                        <a style="margin-top: 10px;" href="{{url('/')}}/addFriend/{{$uList->id}}"
                                            class="btn btn-info btn-sm">Add to Friend</a>
                                     </p>
                                 <?php } else {?>
