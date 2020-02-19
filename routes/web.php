@@ -26,7 +26,7 @@ Auth::routes();
 Route::group(['middleware'=>'auth'], function () {
 
    Route::get('/profile/{slug}', 'ProfileController@index');
-   Route::get('/home', 'HomeController@index')->name('home');
+   Route::get('/home', 'PostsController@index')->name('home');
    Route::get('/changePhoto', function(){
    	return view('profile.pic');
    });
@@ -34,7 +34,11 @@ Route::group(['middleware'=>'auth'], function () {
    Route::get('/findFriends','ProfileController@findFriends');
    Route::post('/updateProfile','ProfileController@updateProfile' );
    Route::get('/editProfile','ProfileController@editProfile');
-   Route::get('addFriend/{id}','ProfileController@sendRequest');
+   Route::get('/addFriend/{id}','ProfileController@sendRequest');
+   Route::get('/requests', 'ProfileController@request');
+   Route::get('/accept/{id}', 'ProfileController@accept');
+   Route::post('/post', 'PostsController@addPost');
+
 
 });
 

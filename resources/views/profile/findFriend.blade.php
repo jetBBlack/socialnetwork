@@ -53,7 +53,7 @@
                                            class="btn btn-info btn-sm">Add to Friend</a>
                                     </p>
                                 <?php } else {?>
-                                    <p>Request Already Sent</p>
+                                    <p>Đã gửi lời mời kết bạn</p>
                                 <?php }?>
                             </div>
 

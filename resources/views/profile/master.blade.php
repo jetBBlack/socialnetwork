@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Fakebook') }}</title>
 
     <!-- Scripts -->
    
@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'FakeBook') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +41,8 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                         <a class="navbar-brand" href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a>
+                        <a class="navbar-brand" href="{{url('/findFriends')}}">Find Friends</a>
+                        <a class="navbar-brand" href="{{url('/requests')}}">Request</a>
                         @endauth
                     </ul>
 
@@ -58,8 +60,10 @@
                             @endif
                         @else
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
                                     <img src="{{url('../')}}/public/image/{{Auth::user()->avatar}}" width="30px" height="30px" class="rounded-circle"/>
+                                    
                                    
                                 </a>
 
