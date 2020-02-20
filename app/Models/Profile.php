@@ -1,19 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class profile extends Model
+class Profile extends Model
 {
     //
+	protected $table = 'profiles';
+
+
+
     protected $fillable = [
     	'city','country','about','user_id',
     ];
 
     public function user()
     {
-    	return $this->beLongTo('App\User');
+    	return $this->beLongTo('App\Models\User');
     }
 
     

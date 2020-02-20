@@ -43,6 +43,7 @@
                         <a class="navbar-brand" href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a>
                         <a class="navbar-brand" href="{{url('/findFriends')}}">Find Friends</a>
                         <a class="navbar-brand" href="{{url('/requests')}}">Request</a>
+                        <a class="navbar-brand" href="{{url('/friends')}}">Friends</a>
                         @endauth
                     </ul>
 

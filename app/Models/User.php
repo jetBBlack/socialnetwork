@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\profile;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne('App\profile');
+        return $this->hasOne('App\Models\Profile');
     }
 
     

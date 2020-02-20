@@ -38,6 +38,8 @@ Route::group(['middleware'=>'auth'], function () {
    Route::get('/requests', 'ProfileController@request');
    Route::get('/accept/{id}', 'ProfileController@accept');
    Route::post('/post', 'PostsController@addPost');
+   Route::get('/friends', 'ProfileController@friends');
+   
 
 
 });

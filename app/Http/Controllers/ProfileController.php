@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\friendships;
+use App\Models\Friendship;
+use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 
@@ -77,7 +78,7 @@ class ProfileController extends Controller
     {
         
         $uid = Auth::user()->id;
-        $checkRequest = friendships::where('requester', $id)->where('user_requested',$uid)->first();
+        $checkRequest = Friendship::where('requester', $id)->where('user_requested',$uid)->first();
 
         if($checkRequest)
         {
@@ -89,6 +90,20 @@ class ProfileController extends Controller
             }
         }
        
+    }
+
+    public function friends()
+    {
+        $uid = Auth::user()->id;
+
+        $friends1 = DB::table('friendships')->leftJoin('users','users.id','friendships.user_requested')
+        ->where('status',1)->where('requester',$uid)->get();
+
+        $friends2 = DB::table('friendships')->leftJoin('users','users.id','friendships.requester')->where('status',1)->where('user_requested', $uid)->get();
+
+        $friends = array_merge($friends1->toArray(), $friends2->toArray());
+
+        return view('profile.friends')->with(compact('friends'));
     }
     
     public function notification()
