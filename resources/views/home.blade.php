@@ -46,10 +46,8 @@
             </div>
         </div>
         <div class="col-md-12 pull-left">
-              <?php
-                $checkPost = DB::table('posts')->join('users','users.id','=','posts.user_id')->get();
-                if($checkPost){
-              ?>
+             
+             
               <div class="card">
                     <table class="table">
                     <div class="col-sm-12 col-md-12">
@@ -82,7 +80,7 @@
                     </div>
                 </table>
               </div>
-              <?php } ?>
+             
                
         </div>
     </div>

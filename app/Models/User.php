@@ -44,5 +44,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Profile');
     }
 
+    public function messages() {
+        return $this->hasMany(Message::class);
+    }
+
+    public function friend(){
+        return $this->belongsTo('App\Models\Friendship','id','requester');
+    }
     
 }

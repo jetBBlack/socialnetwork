@@ -30,6 +30,6 @@ Vue.component('chats', require('./components/ChatsComponent.vue').default);
 const app = new Vue({
     el: '#app',
     data: {
-    	msg:'my message'
+        msg:'my new message '
     }
 });

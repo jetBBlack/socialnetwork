@@ -9,9 +9,11 @@ class Post extends Model
     //
 	protected $table = 'posts';
 
+	
+
 
     public function user()
     {
-    	$this->belongTo('user::class');
+    	$this->belongsTo('user::class');
     }
 }

@@ -12,11 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/test', function () {
-    return Auth::user()->test();
+  
+    return view('welcome');
 });
 
 
@@ -39,9 +37,18 @@ Route::group(['middleware'=>'auth'], function () {
    Route::get('/accept/{id}', 'ProfileController@accept');
    Route::post('/post', 'PostsController@addPost');
    Route::get('/friends', 'ProfileController@friends');
+   Route::get('/messages', 'ChatsController@index');
+   Route::get('/message/{id}', 'ChatsController@getMessage')->name('message');
+   Route::post('message', 'ChatsController@sendMessage');
+   
    
 
 
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+
+
+
+
